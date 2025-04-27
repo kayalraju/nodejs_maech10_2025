@@ -1,0 +1,4 @@
+user nme- kayalraju003
+password-edYMQf3BGyq2zoGM
+
+mongodb+srv://kayalraju003:<db_password>@cluster0.ke03wy3.mongodb.net/
