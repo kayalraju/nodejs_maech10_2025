@@ -33,6 +33,9 @@ app.use('/api',CsbRouter);
 const JoiRouter=require('./app/router/JoiRoute');
 app.use('/api',JoiRouter);
 
+const routerejs=require('./app/router/crudejsrouter');
+app.use(routerejs);
+
 const port=3006
 app.listen(port, () => {
     console.log('Server started on port 3006');
