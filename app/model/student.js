@@ -22,6 +22,14 @@ const StudentSchema=new Schema({
     image:{
         type: String,
         required: true
+    },
+    Is_delete:{
+        type: Boolean,
+        default: false
+    },
+    slug:{
+        type: String,
+        required: true
     }
 });
 

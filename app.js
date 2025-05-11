@@ -2,6 +2,8 @@ const express = require('express');
 const ejs= require('ejs');
 const cors=require('cors');
 const path=require('path');
+const flash=require('connect-flash');
+const session=require('express-session');
 
 const dotenv=require('dotenv').config();
 const dbcon=require('./app/config/dbcon')
@@ -12,6 +14,14 @@ dbcon()
 
 
 app.use(cors())
+
+app.use(session({
+    cookie: { maxAge: 60000 },
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(flash());
 //define the view engine
 app.set('view engine', 'ejs');
 app.set('views','views')

@@ -1,7 +1,7 @@
 const { log } = require('console')
 const Student = require('../model/student')
 const fs=require('fs')
-
+const slug=require('slugify')
 
 class StudentApiController {
 
@@ -11,7 +11,8 @@ class StudentApiController {
             const { name, email, phone, city } = req.body
 
             const studentobj = new Student({
-                name, email, phone, city
+                name, email, phone, city,
+                slug:slug(name),
             })
             if(req.file){
                 studentobj.image=req.file.path
