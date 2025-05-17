@@ -46,6 +46,9 @@ app.use('/api',JoiRouter);
 const routerejs=require('./app/router/crudejsrouter');
 app.use(routerejs);
 
+const authRoute=require('./app/router/authRoute');
+app.use('/api',authRoute);
+
 const port=3006
 app.listen(port, () => {
     console.log('Server started on port 3006');
