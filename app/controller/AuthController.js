@@ -16,7 +16,7 @@ class AuthController {
             const esixUser=await User.findOne({email})
             if(esixUser){
                 return res.status(400).json({
-                    message: "User already exists"
+                    message: "User email id already exists"
                 })
             }
             const hasPassword=await HashedPassword(password)
@@ -59,6 +59,7 @@ class AuthController {
                     message: "Invalid credentials"
                 })
             } 
+          
             const token = jwt.sign({
                 id: user._id,
                 email: user.email,
@@ -85,6 +86,12 @@ class AuthController {
         return res.status(200).json({
             message: "welcome to Dashboard",
             user: req.user
+        })
+    }
+    async profile(req,res){
+        return res.status(200).json({
+            message: "welcome to profile page",
+            data:req.user
         })
     }
 }

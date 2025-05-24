@@ -9,6 +9,8 @@ router.post('/login',AuthController.login)
 
 router.use(AuthCheck)
 router.get('/dashboard',AuthController.dashboard)
+router.get('/profile',AuthController.profile)
+
 
 
 

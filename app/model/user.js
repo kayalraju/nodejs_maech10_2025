@@ -18,7 +18,7 @@ const userSchema = new Schema({
     id_verify: {
         type: Boolean,
         required: false
-    } 
+    },
 },
 {
     timestamps: true

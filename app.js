@@ -4,6 +4,7 @@ const cors=require('cors');
 const path=require('path');
 const flash=require('connect-flash');
 const session=require('express-session');
+const cookieParser=require('cookie-parser')
 
 const dotenv=require('dotenv').config();
 const dbcon=require('./app/config/dbcon')
@@ -21,6 +22,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(cookieParser())
 app.use(flash());
 //define the view engine
 app.set('view engine', 'ejs');
@@ -48,6 +50,9 @@ app.use(routerejs);
 
 const authRoute=require('./app/router/authRoute');
 app.use('/api',authRoute);
+
+const ejsAuthRoute=require('./app/router/authEjsRoute')
+app.use(ejsAuthRoute)
 
 const port=3006
 app.listen(port, () => {
