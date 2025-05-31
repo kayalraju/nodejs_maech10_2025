@@ -17,7 +17,11 @@ const userSchema = new Schema({
     },
     id_verify: {
         type: Boolean,
-        required: false
+        default: false
+    },
+    is_admin: {
+        type: Boolean,
+        default: false
     },
 },
 {
