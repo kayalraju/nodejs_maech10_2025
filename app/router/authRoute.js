@@ -6,6 +6,8 @@ const router = express.Router()
 
 router.post('/register',AuthController.register)
 router.post('/login',AuthController.login)
+router.post('/otp/verifyed',AuthController.verifyedotp)
+
 
 router.use(AuthCheck)
 router.get('/dashboard',AuthController.dashboard)
