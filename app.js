@@ -1,3 +1,5 @@
+
+require('dotenv').config();
 const express = require('express');
 const ejs= require('ejs');
 const cors=require('cors');
@@ -5,16 +7,16 @@ const path=require('path');
 const flash=require('connect-flash');
 const session=require('express-session');
 const cookieParser=require('cookie-parser')
-
-const dotenv=require('dotenv').config();
+const configureCors=require('./app/config/corsConfig')
 const dbcon=require('./app/config/dbcon')
-
+const createBasicRateLimiter = require('./app/middleware/rateLimit');
 const app = express();
 
 dbcon()
 
 
-app.use(cors())
+app.use(configureCors())
+app.use(createBasicRateLimiter(200, 15 * 60 * 1000)); // 100 request per 15 minutes
 
 app.use(session({
     cookie: { maxAge: 60000 },
@@ -51,7 +53,9 @@ app.use(routerejs);
 const authRoute=require('./app/router/authRoute');
 app.use('/api',authRoute);
 
-const ejsAuthRoute=require('./app/router/authEjsRoute')
+const ejsAuthRoute=require('./app/router/authEjsRoute');
+
+
 app.use(ejsAuthRoute)
 
 const port=3006
